@@ -8,7 +8,8 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Install XCode
-if test ! "$(which xcode-select)"; then
+xcode-select -p &> /dev/null
+if [ $? -ne 0 ]; then
     xcode-select --install
 fi
 
