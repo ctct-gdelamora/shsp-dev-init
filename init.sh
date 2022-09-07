@@ -10,17 +10,16 @@ set -euo pipefail
 if ! which xcode-select >/dev/null; then
     xcode-select --install
 else
-    echo "Xcode-Select already installed. Moving on..."
+    printf "Xcode-Select already installed. Moving on..."
 fi
 
 # Install Homebrew
 if ! which brew >/dev/null; then
-    /bin/bash -c \
-"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    printf "Installing Homebrew..."
 fi
 
-echo "Upgrading Homebrew..."
+printf "Upgrading Homebrew..."
 brew upgrade
 
 # # CLI Tools
