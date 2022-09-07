@@ -15,7 +15,7 @@ fi
 
 # Install Homebrew
 if ! which brew >/dev/null; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    curl -O https://raw.githubusercontent.com/Homebrew/install/master/install
     echo "Installing Homebrew..."
 fi
 
