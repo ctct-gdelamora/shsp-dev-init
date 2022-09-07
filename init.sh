@@ -8,7 +8,9 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Install XCode
-xcode-select --install
+if test ! "$(which xcode-select)"; then
+    xcode-select --install
+fi
 
 # Set SUDO User to Current User
 SUDO_USER=$(whoami)
