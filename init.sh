@@ -2,14 +2,44 @@
 
 # Credit for a lot of this goes to https://www.lotharschulz.info/2021/05/11/macos-setup-automation-with-homebrew/
 
-{
-# unofficial bash strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
-IFS=$'\n\t'
+
+# from ez.pz
+function brew_check() {
+    if ! which brew >/dev/null; then
+        read -n 1 -r -p "You will also need brew. Install brew? [y/n] "
+        echo
+        if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+            /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        else
+            echo "Go to https://brew.sh/ to see installation instructions."
+            exit 1
+        fi
+    fi
+}
+if [ "${BASH_VERSION%%.*}" -lt "4" ]; then
+    if [ -n "${RECURSION-}" ]; then
+        echo "Unable to correctly restart script with newer bash version."
+        exit 1
+    fi
+    read -n 1 -r -p "You need a minimum bash version of 4.0! Install a newer version? [y/n] "
+    echo
+    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+        brew_check
+        brew install bash
+        hash -r
+        export RECURSION="yep"
+        exec /usr/bin/env bash $0
+    else
+        echo "Use \"brew install bash\" to install a newer version."
+        exit 1
+    fi
+fi
+
+
 
 # Install XCode
-xcode-select -p &> /dev/null
-if [ $? -ne 0 ]; then
+if ! which xcode-select >/dev/null; then
     xcode-select --install
 fi
 
