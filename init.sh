@@ -14,7 +14,7 @@ xcode-select --install
 SUDO_USER=$(whoami)
 
 # Install Homebrew
-if test ! $(which brew); then
+if test ! "$(which brew)"; then
     /bin/bash -c \
 "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
@@ -24,7 +24,7 @@ brew upgrade
 # CLI Tools
 PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n') || true
 
-if [[ ! -z "$PROD" ]]; then
+if [[ -n "$PROD" ]]; then
   softwareupdate -i "$PROD" --verbose
 fi
 
@@ -34,7 +34,7 @@ PACKAGES=(
 )
 
 echo "Installing packages..."
-brew install ${PACKAGES[@]}
+brew install "${PACKAGES[@]}"
 
 CASKS=(
     firefox
@@ -46,7 +46,7 @@ CASKS=(
 )
 
 echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
-sudo -u $SUDO_USER brew install --cask ${CASKS[@]}
+sudo -u $SUDO_USER brew install --cask "${CASKS[@]}"
 
 cd ~/
 git clone https://github.com/nvm-sh/nvm.git .nvm
@@ -58,7 +58,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 EOF
 
-source ~/.zshrc
+source "~/.zshrc"
 
 nvm install 14 # CURRENT NODE VERSION 14 SUPPORTED BY SHSP
 
