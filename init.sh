@@ -54,7 +54,7 @@ CASKS=(
 
 echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
 
-if brew ls --versions "${CASKS[@]}" || mdfind -name "${APPS[@]}"; then 
+if brew ls --versions "${CASKS[@]}" || mdfind -name "${APPS[@]}".app; then 
     brew upgrade "${CASKS[@]}"; 
 else
     sudo -u "$(whoami)" brew install --cask "${CASKS[@]}"
