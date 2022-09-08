@@ -36,14 +36,13 @@ brew install "${PACKAGES[@]}"
 
 CASKS=(
     firefox
-    google-chrome
     iterm2
     slack
     visual-studio-code
     zoom
 )
 
-echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
+echo "Installing cask apps (Firefox, iTerm2, Slack, Visual Studio Code, Zoom)..."
 sudo -u "$(whoami)" brew install --cask "${CASKS[@]}"
 
 cd ~/
