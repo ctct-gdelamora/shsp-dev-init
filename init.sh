@@ -13,7 +13,7 @@ else
     echo "Xcode-Select already installed. Skipping."
 fi
 
-# Install Homebrew
+# Install Homebrew or re-tap homebrew/core if already installed.
 if ! which brew >/dev/null; then
     echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -27,7 +27,7 @@ else
     brew tap homebrew/core
 fi
 
-# 
+# Install NVM or skip
 if ! which nvm >/dev/null; then
     echo "Node Version Manager not found. Installing."
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -36,12 +36,16 @@ else
     echo "Node Version Manager already installed. Skipping."
 fi
 
+# Regardless of results above, install NVM 14
 echo "Installing Node v14, current version supported."
 nvm install 14
 
+# Install gettext
 if ! which gettext >/dev/null; then
     echo "gettext not found. Installing."
     brew install gettext
+else
+    echo "gettext already installed. Skipping."
 fi
 
 if ! which zsh >/dev/null; then
@@ -54,7 +58,7 @@ fi
 if  [[ -d "/Applications/Visual Studio Code.app" ]]; then 
     echo "Visual Studio Code already installed. Skipping."
 else
-    read -p "Visual Studio Code is the recommended IDE. Install? " yn
+    read -rp "Visual Studio Code is the recommended IDE. Install? " yn
     select yn in "Yes" "No"; do
         case $yn in
             [Yy]* ) brew install --cask visual-studio-code; break;;
