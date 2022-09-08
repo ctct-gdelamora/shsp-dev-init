@@ -20,9 +20,6 @@ if ! which brew >/dev/null; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-echo "Upgrading Homebrew..."
-brew upgrade
-
 source /Users/"$(whoami)"/.zprofile
 
 # sanity check, read brew version
