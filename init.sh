@@ -17,6 +17,8 @@ fi
 if ! which brew >/dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo "Installing Homebrew..."
+    echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >> /Users/"$(whoami)"/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 echo "Upgrading Homebrew..."
