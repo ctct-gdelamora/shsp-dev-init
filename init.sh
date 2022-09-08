@@ -24,6 +24,9 @@ else
     brew update
 fi
 
+rm -rf "$(brew --repo homebrew/core)"
+brew tap homebrew/core
+
 echo "Installing packages..."
 brew install zsh gettext
 
