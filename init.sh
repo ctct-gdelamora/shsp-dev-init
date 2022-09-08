@@ -33,8 +33,8 @@ if [[ ! -z "$PROD" ]]; then
 fi
 
 PACKAGES=(
-    gettext
     zsh
+    gettext
 )
 
 echo "Installing packages..."
