@@ -27,6 +27,13 @@ fi
 rm -rf "$(brew --repo homebrew/core)"
 brew tap homebrew/core
 
+if ! which nvm >/dev/null; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    source ~/.zshrc
+fi
+
+nvm install 14 # CURRENT NODE VERSION 14 SUPPORTED BY SHSP
+
 PACKAGES=(
     gettext
     zsh
@@ -58,14 +65,8 @@ if brew ls --versions "${CASKS[@]}" || mdfind -name "${APPS[@]}"; then
     brew upgrade "${CASKS[@]}"; 
 else
     brew install --cask "${CASKS[@]}"
+    
 fi
-
-if ! which nvm >/dev/null; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-    source ~/.zshrc
-fi
-
-nvm install 14 # CURRENT NODE VERSION 14 SUPPORTED BY SHSP
 
 # Rancher Desktop
 if ! mdfind -name 'Rancher Desktop.app'; then
