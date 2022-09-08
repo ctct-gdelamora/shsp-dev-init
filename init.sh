@@ -57,16 +57,15 @@ set -euo pipefail
 # fi
 
 if  [ ! -e "/Applications/Visual Studio Code.app" ]; then 
-    echo "Visual Studio Code is not installed."
-#     read "Visual Studio Code is the recommended IDE. Install? " yn
-#     select yn in "Yes" "No"; do
-#         case $yn in
-#             [Yy]* ) brew install --cask visual-studio-code; break;;
-#             [Nn]* ) exit;;
-#         esac
-#     done
-# else
-#     echo "Visual Studio Code already installed. Skipping."
+    read "Visual Studio Code is the recommended IDE. Install? " yn
+    select yn in "Yes" "No"; do
+        case $yn in
+            [Yy]* ) brew install --cask visual-studio-code; break;;
+            [Nn]* ) exit;;
+        esac
+    done
+else
+    echo "Visual Studio Code already installed. Skipping."
 fi
 
 # if  [ -e "/Applications/Google Chrome.app" ]; then 
