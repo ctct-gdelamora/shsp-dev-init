@@ -44,7 +44,7 @@ if ! which gettext >/dev/null; then
     brew install gettext
 fi
 
-if ! which zsh >dev/null; then
+if ! which zsh >/dev/null; then
     echo "zsh not found. Installing."
     brew install zsh
 else
