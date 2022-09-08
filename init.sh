@@ -53,7 +53,7 @@ CASKS=(
 )
 
 echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
-sudo -u $SUDO_USER brew install --cask ${CASKS[@]}
+sudo -u $SUDO_USER brew install --cask "${CASKS[@]}"
 
 cd ~/
 git clone https://github.com/nvm-sh/nvm.git .nvm
