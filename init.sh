@@ -34,6 +34,15 @@ PACKAGES=(
 echo "Installing packages..."
 brew install "${PACKAGES[@]}"
 
+APPS=(
+    'Firefox'
+    'Google Chrome'
+    'iTerm'
+    'Slack'
+    'Visual Studio Code'
+    'Zoom'
+)
+
 CASKS=(
     firefox
     google-chrome
@@ -45,7 +54,7 @@ CASKS=(
 
 echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
 
-if brew ls --versions "${CASKS[@]}"; then 
+if brew ls --versions "${CASKS[@]}" || mdfind -name "${APPS[@]}"; then 
     brew upgrade "${CASKS[@]}"; 
 else
     sudo -u "$(whoami)" brew install --cask "${CASKS[@]}"
