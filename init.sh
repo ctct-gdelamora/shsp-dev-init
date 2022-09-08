@@ -38,7 +38,6 @@ APPS=(
     'Firefox.app'
     'Google Chrome.app'
     'iTerm.app'
-    'Slack.app'
     'Visual Studio Code.app'
     'Zoom.app'
 )
