@@ -52,27 +52,23 @@ else
 fi
 
 if ! which nvm >/dev/null; then
-    cd ~/
-    git clone https://github.com/nvm-sh/nvm.git .nvm
-    source ./nvm.sh
-    cat <<EOF >> ~/.zshrc
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-EOF
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    source /.zshrc
 fi
-
-source /.zshrc
 
 nvm install 14 # CURRENT NODE VERSION 14 SUPPORTED BY SHSP
 
 # Rancher Desktop
-## Download
-curl -O ~/Downloads/RancherDesktop.dmg https://github.com/rancher-sandbox/rancher-desktop/releases/download/v1.4.1/Rancher.Desktop-1.4.1.aarch64.dmg
-## Mount the .dmg image
-sudo hdiutil attach ~/Downloads/RancherDesktop.dmg
-## Install the application
-cp -R /Volumes/RancherDesktop/RancherDesktop.app /Applications
-diskutil unmount /Volumes/RancherDesktop
-open /Applications/RancherDesktop.app
+if ! mdfind -name 'Rancher Desktop.app'; then
+    ## Download
+    curl -O ~/Downloads/RancherDesktop.dmg https://github.com/rancher-sandbox/rancher-desktop/releases/download/v1.4.1/Rancher.Desktop-1.4.1.aarch64.dmg
+    ## Mount the .dmg image
+    sudo hdiutil attach ~/Downloads/RancherDesktop.dmg
+    ## Install the application
+    cp -R /Volumes/RancherDesktop/RancherDesktop.app /Applications
+    diskutil unmount /Volumes/RancherDesktop
+    open /Applications/RancherDesktop.app
+else
+    echo "Rancher Desktop already installed. Continuing..."
+fi
 }
