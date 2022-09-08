@@ -56,9 +56,7 @@ set -euo pipefail
 #     echo "zsh already installed. Skipping."
 # fi
 
-if  [ -e "/Applications/Visual Studio Code.app" ]; then 
-    echo "Visual Studio Code already installed. Skipping."
-else
+if  [ ! -e "/Applications/Visual Studio Code.app" ]; then 
     read -rp "Visual Studio Code is the recommended IDE. Install? " yn
     select yn in "Yes" "No"; do
         case $yn in
@@ -66,6 +64,8 @@ else
             [Nn]* ) exit;;
         esac
     done
+else
+    echo "Visual Studio Code already installed. Skipping."
 fi
 
 if  [ -e "/Applications/Google Chrome.app" ]; then 
