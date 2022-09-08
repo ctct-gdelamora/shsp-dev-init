@@ -55,7 +55,7 @@ else
     echo "zsh already installed. Skipping."
 fi
 
-if  [[ -e "/Applications/Visual Studio Code.app" ]]; then 
+if  [ -e "/Applications/Visual Studio Code.app" ]; then 
     echo "Visual Studio Code already installed. Skipping."
 else
     read -rp "Visual Studio Code is the recommended IDE. Install? " yn
@@ -67,25 +67,25 @@ else
     done
 fi
 
-if  [[ -e "/Applications/Google Chrome.app" ]]; then 
+if  [ -e "/Applications/Google Chrome.app" ]; then 
     echo "Google Chrome already installed. Skipping."
 else
     brew install --cask google-chrome
 fi
 
-if  [[ -e "/Applications/Zoom.app" ]]; then 
+if  [ -e "/Applications/Zoom.app" ]; then 
     echo "Zoom already installed. Skipping."
 else
     brew install --cask zoom
 fi
 
-if  [[ -e "/Applications/Slack.app" ]]; then 
+if  [ -e "/Applications/Slack.app" ]; then 
     echo "Slack already installed. Skipping."
 else
     brew install --cask slack
 fi
 
-if  [[ -e "/Applications/iTerm.app" ]]; then 
+if  [ -e "/Applications/iTerm.app" ]; then 
     echo "iTerm already installed. Skipping."
 else
     brew install --cask iterm2
