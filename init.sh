@@ -53,7 +53,7 @@ fi
 
 if ! which nvm >/dev/null; then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-    source /.zshrc
+    source ~/.zshrc
 fi
 
 nvm install 14 # CURRENT NODE VERSION 14 SUPPORTED BY SHSP
