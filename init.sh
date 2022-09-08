@@ -20,7 +20,8 @@ if ! which brew >/dev/null; then
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
     source ~/.zprofile
 else
-    echo "Homebrew already installed. Moving on..."
+    echo "Homebrew already installed. Updating..."
+    brew update
 fi
 
 echo "Installing packages..."
