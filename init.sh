@@ -15,6 +15,7 @@ fi
 
 # Install Homebrew
 if ! which brew >/dev/null; then
+    echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
     source ~/.zprofile
@@ -22,16 +23,8 @@ else
     echo "Homebrew already installed. Moving on..."
 fi
 
-
-# CLI Tools
-PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n') || true
-
-if [[ ! -z "$PROD" ]]; then
-  softwareupdate -i "$PROD" --verbose
-fi
-
 echo "Installing packages..."
-brew install zsh ; brew install gettext
+brew install zsh gettext
 
 CASKS=(
     firefox
