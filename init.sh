@@ -36,14 +36,20 @@ brew install "${PACKAGES[@]}"
 
 CASKS=(
     firefox
+    google-chrome
     iterm2
     slack
     visual-studio-code
     zoom
 )
 
-echo "Installing cask apps (Firefox, iTerm2, Slack, Visual Studio Code, Zoom)..."
-sudo -u "$(whoami)" brew install --cask "${CASKS[@]}"
+echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
+
+if brew ls --versions "${CASKS[@]}"; then 
+    brew upgrade "${CASKS[@]}"; 
+else
+    sudo -u "$(whoami)" brew install --cask "${CASKS[@]}"
+fi
 
 cd ~/
 git clone https://github.com/nvm-sh/nvm.git .nvm
