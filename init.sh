@@ -27,8 +27,12 @@ fi
 rm -rf "$(brew --repo homebrew/core)"
 brew tap homebrew/core
 
+PACKAGES=(
+    gettext
+    zsh
+)
 echo "Installing packages..."
-brew install zsh gettext
+brew install "${PACKAGES[@]}"
 
 CASKS=(
     firefox
@@ -40,7 +44,7 @@ CASKS=(
 )
 
 echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
-sudo -u $SUDO_USER brew install --cask "${CASKS[@]}"
+sudo -u "$(whoami)" brew install --cask "${CASKS[@]}"
 
 cd ~/
 git clone https://github.com/nvm-sh/nvm.git .nvm
