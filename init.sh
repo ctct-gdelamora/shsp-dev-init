@@ -57,11 +57,11 @@ set -euo pipefail
 # fi
 
 if  [ ! -e "/Applications/Visual Studio Code.app" ]; then 
-    read "Visual Studio Code is the recommended IDE. Install? " yn
+    read "Visual Studio Code is the recommended IDE. Install? "
     select yn in "Yes" "No"; do
         case $yn in
-            [Yy]* ) brew install --cask visual-studio-code; break;;
-            [Nn]* ) exit;;
+            Yes ) brew install --cask visual-studio-code; break;;
+            No ) exit;;
         esac
     done
 else
