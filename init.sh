@@ -38,24 +38,26 @@ APPS=(
     'Firefox.app'
     'Google Chrome.app'
     'iTerm.app'
+    'Slack.app'
     'Visual Studio Code.app'
     'Zoom.app'
 )
 
 CASKS=(
-    firefox
-    google-chrome
-    iterm2
-    visual-studio-code
-    zoom
+    'firefox'
+    'google-chrome'
+    'iterm2'
+    'slack'
+    'visual-studio-code'
+    'zoom'
 )
 
-echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Visual Studio Code, Zoom)..."
+echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
 
 if brew ls --versions "${CASKS[@]}" || mdfind -name "${APPS[@]}"; then 
     brew upgrade "${CASKS[@]}"; 
 else
-    sudo -u "$(whoami)" brew install --cask "${CASKS[@]}"
+    brew install --cask "${CASKS[@]}"
 fi
 
 if ! which nvm >/dev/null; then
@@ -64,10 +66,6 @@ if ! which nvm >/dev/null; then
 fi
 
 nvm install 14 # CURRENT NODE VERSION 14 SUPPORTED BY SHSP
-
-if ! mdfind -name 'Slack.app'; then
-    brew install --cask 'slack' # for some reason won't install like the others above
-fi
 
 # Rancher Desktop
 if ! mdfind -name 'Rancher Desktop.app'; then
