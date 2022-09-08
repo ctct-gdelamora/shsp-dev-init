@@ -24,6 +24,11 @@ fi
 echo "Upgrading Homebrew..."
 brew upgrade
 
+source /Users/"$(whoami)"/.zprofile
+
+# sanity check, read brew version
+brew -v
+
 # # CLI Tools
 # PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n') || true
 
