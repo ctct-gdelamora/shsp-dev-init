@@ -64,8 +64,6 @@ if  [ ! -e "/Applications/Visual Studio Code.app" ]; then
             No ) exit;;
         esac
     done
-else
-    echo "Visual Studio Code already installed. Skipping."
 fi
 
 # if  [ -e "/Applications/Google Chrome.app" ]; then 
