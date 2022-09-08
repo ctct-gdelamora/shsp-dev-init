@@ -45,14 +45,12 @@ APPS=(
     'Firefox.app'
     'Google Chrome.app'
     'iTerm.app'
-    'Zoom.app'
 )
 
 CASKS=(
     'firefox'
     'google-chrome'
     'iterm2'
-    'zoom'
 )
 
 echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
@@ -67,6 +65,8 @@ if ! mdfind -name "Visual Studio Code.app"; then
     brew install --cask "visual-studio-code"
 elif ! mdfind -name "Slack.app"; then
     brew install --cask "slack"
+elif ! mdfind -name "Zoom.app"; then
+    brew install --cask "zoom"
 fi
 
 # Rancher Desktop
