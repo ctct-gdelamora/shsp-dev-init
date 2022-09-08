@@ -41,32 +41,40 @@ PACKAGES=(
 echo "Installing packages..."
 brew install "${PACKAGES[@]}"
 
-APPS=(
-    'Firefox.app'
-    'Google Chrome.app'
-    'iTerm.app'
-)
-
-CASKS=(
-    'firefox'
-    'google-chrome'
-    'iterm2'
-)
-
-echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio Code, Zoom)..."
-
-if mdfind -name "${APPS[@]}"; then 
-    brew upgrade "${CASKS[@]}"; 
+if  [[ -d "/Applications/Visual Studio Code.app" ]]; then 
+    echo "Visual Studio Code already installed. Skipping."
 else
-    brew install --cask "${CASKS[@]}" || brew install "${CASKS[@]}"
+    read -p "Visual Studio Code is the recommended IDE. Install? " yn
+    select yn in "Yes" "No"; do
+        case $yn in
+            [Yy]* ) brew install --cask visual-studio-code; break;;
+            [Nn]* ) exit;;
+        esac
+    done
 fi
 
-if ! mdfind -name "Visual Studio Code.app"; then 
-    brew install --cask "visual-studio-code"
-elif ! mdfind -name "Slack.app"; then
-    brew install --cask "slack"
-elif ! mdfind -name "Zoom.app"; then
-    brew install --cask "zoom"
+if  [[ -d "/Applications/Google Chrome.app" ]]; then 
+    echo "Google Chrome already installed. Skipping."
+else
+    brew install --cask google-chrome
+fi
+
+if  [[ -d "/Applications/Zoom.app" ]]; then 
+    echo "Zoom already installed. Skipping."
+else
+    brew install --cask zoom
+fi
+
+if  [[ -d "/Applications/Slack.app" ]]; then 
+    echo "Slack already installed. Skipping."
+else
+    brew install --cask slack
+fi
+
+if  [[ -d "/Applications/iTerm.app" ]]; then 
+    echo "iTerm already installed. Skipping."
+else
+    brew install --cask iterm2
 fi
 
 # Rancher Desktop
