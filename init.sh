@@ -45,8 +45,6 @@ APPS=(
     'Firefox.app'
     'Google Chrome.app'
     'iTerm.app'
-    'Slack.app'
-    'Visual Studio Code.app'
     'Zoom.app'
 )
 
@@ -54,8 +52,6 @@ CASKS=(
     'firefox'
     'google-chrome'
     'iterm2'
-    'slack'
-    'visual-studio-code'
     'zoom'
 )
 
@@ -65,6 +61,12 @@ if mdfind -name "${APPS[@]}"; then
     brew upgrade "${CASKS[@]}"; 
 else
     brew install --cask "${CASKS[@]}" || brew install "${CASKS[@]}"
+fi
+
+if ! mdfind -name "Visual Studio Code.app"; then 
+    brew install --cask "visual-studio-code"
+elif ! mdfind -name "Slack.app"; then
+    brew install --cask "slack"
 fi
 
 # Rancher Desktop
