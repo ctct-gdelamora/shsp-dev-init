@@ -51,15 +51,16 @@ else
     sudo -u "$(whoami)" brew install --cask "${CASKS[@]}"
 fi
 
-cd ~/
-git clone https://github.com/nvm-sh/nvm.git .nvm
-. ./nvm.sh
-
-cat <<EOF >> ~/.zshrc
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if ! which nvm >/dev/null; then
+    cd ~/
+    git clone https://github.com/nvm-sh/nvm.git .nvm
+    source ./nvm.sh
+    cat <<EOF >> ~/.zshrc
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 EOF
+fi
 
 source /.zshrc
 
