@@ -64,7 +64,7 @@ echo "Installing cask apps (Firefox, Google Chrome, iTerm2, Slack, Visual Studio
 if mdfind -name "${APPS[@]}"; then 
     brew upgrade "${CASKS[@]}"; 
 else
-    brew install --cask "${CASKS[@]}"
+    brew install --cask "${CASKS[@]}" || brew install "${CASKS[@]}"
 fi
 
 # Rancher Desktop
