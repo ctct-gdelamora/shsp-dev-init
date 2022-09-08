@@ -10,7 +10,7 @@ set -euo pipefail
 if ! which xcode-select >/dev/null; then
     xcode-select --install
 else
-    echo "Xcode-Select already installed. Moving on..."
+    echo "Xcode-Select already installed. Skipping."
 fi
 
 # Install Homebrew
@@ -22,24 +22,34 @@ if ! which brew >/dev/null; then
 else
     echo "Homebrew already installed. Updating..."
     brew update
+    echo "Re-tapping homebrew/core."
+    rm -rf "$(brew --repo homebrew/core)"
+    brew tap homebrew/core
 fi
 
-rm -rf "$(brew --repo homebrew/core)"
-brew tap homebrew/core
-
+# 
 if ! which nvm >/dev/null; then
+    echo "Node Version Manager not found. Installing."
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     source ~/.zshrc
+else
+    echo "Node Version Manager already installed. Skipping."
 fi
 
-nvm install 14 # CURRENT NODE VERSION 14 SUPPORTED BY SHSP
+echo "Installing Node v14, current version supported."
+nvm install 14
 
-PACKAGES=(
-    gettext
-    zsh
-)
-echo "Installing packages..."
-brew install "${PACKAGES[@]}"
+if ! which gettext >/dev/null; then
+    echo "gettext not found. Installing."
+    brew install gettext
+fi
+
+if ! which zsh >dev/null; then
+    echo "zsh not found. Installing."
+    brew install zsh
+else
+    echo "zsh already installed. Skipping."
+fi
 
 if  [[ -d "/Applications/Visual Studio Code.app" ]]; then 
     echo "Visual Studio Code already installed. Skipping."
