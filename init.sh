@@ -59,7 +59,7 @@ set -euo pipefail
 # Check if VS Code is installed
 if  [ ! -e "/Applications/Visual Studio Code.app" ]; then 
     read -p "Visual Studio Code is the recommended IDE. Install? [Y/n]\t" -n 1 -r
-    if "$REPLY" in ^[Yy]$ ; then
+    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
         brew install --cask visual-studio-code;
     else
         printf "\nVisual Studio Code will not be installed. Skipping.\n";
