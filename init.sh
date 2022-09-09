@@ -56,6 +56,7 @@ set -euo pipefail
 #     echo "zsh already installed. Skipping."
 # fi
 
+# Check if VS Code is installed
 if  [ ! -e "/Applications/Visual Studio Code.app" ]; then 
     read -p "Visual Studio Code is the recommended IDE. Install? [Y/n]\t" -n 1 -r
     if [[ "$REPLY" =~ ^[Yy]$ ]]; then
