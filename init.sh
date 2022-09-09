@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Credit for a lot of this goes to https://www.lotharschulz.info/2021/05/11/macos-setup-automation-with-homebrew/
+set -euo pipefail
 
 {
 # unofficial bash strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -euo pipefail
 
 # # Install XCode
 # if ! which xcode-select >/dev/null; then
@@ -57,16 +57,14 @@ set -euo pipefail
 # fi
 
 # Check if VS Code is installed
-if  [ -f "/Applications/Visual Studio Code.app" ]; then 
-    echo "Visual Studio Code already installed. Skipping."
-else
-    read -p "Visual Studio Code is the recommended IDE. Install? [Y/n]\t" -n 1 -r
+while [ ! -f "/Applications/Visual Studio Code.app" ]; do
+    read -p "Visual Studio Code is the recommended IDE. Install? [Y/n]" -n 1 -r
     if [[ "$REPLY" =~ ^[Yy]$ ]]; then
         brew install --cask visual-studio-code;
     else
         printf "\nVisual Studio Code will not be installed. Skipping.\n";
     fi
-fi
+done
 
 # if  [ -e "/Applications/Google Chrome.app" ]; then 
 #     echo "Google Chrome already installed. Skipping."
