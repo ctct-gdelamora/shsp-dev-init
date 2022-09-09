@@ -56,13 +56,15 @@ set -euo pipefail
 #     echo "zsh already installed. Skipping."
 # fi
 
-if  [ -e "/Applications/Visual Studio Code.app" ]; then 
+if  [ ! -e "/Applications/Visual Studio Code.app" ]; then 
     echo "Visual Studio Code is the recommended IDE. Install? [Y/n]"
     read -r VS_YN
     case "$VS_YN" in
         [yY]) brew install --cask visual-studio-code;;
         [nN]) printf "Visual Studio Code will not be installed. Skipping.\n";;
     esac
+else
+    echo "Visual Studio Code already installed. Skipping."
 fi
 
 # if  [ -e "/Applications/Google Chrome.app" ]; then 
